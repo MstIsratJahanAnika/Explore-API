@@ -10,22 +10,3 @@ const loadData = () => {
 };
 // button er maddhome data load hobe JSON er 
 
-// ES6 practice 
-const postData = () => {
-    const url = 'https://jsonplaceholder.typicode.com/posts';
-    fetch(url)
-        .then((res) => res.json()) //json file promise
-        .then((jsonFile) => {
-            console.log(jsonFile);
-            displayPost(jsonFile);
-        });
-};
-
-
-// forEach() loop
-const displayPost = (posts) =>{
-    posts.forEach(post => {
-       console.log(post); 
-    });
-};
-// array of obj. jeta url a stored ase
