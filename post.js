@@ -1,40 +1,37 @@
-const postData = () =>{
-    const url ="https://jsonplaceholder.typicode.com/posts";
-
+const postData = () => {
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    // fetch()
     fetch(url)
-        .then(jesonFile => jesonFile.json())
-        .then(jesonFile => {
-            console.log(jesonFile);
-            displayPost(jesonFile);
-        })
+        .then(jsonFile => jsonFile.json()) //promise back
+        .then(jsonFile => {
+            displayPost(jsonFile); //nicher function call
+            // je function theke ami data pabo
+        });
 };
 
-// function to display each element 
-displayPost = (posts) =>{
-    // get the container
+displayPost = (posts) => {
+    // get main container
     const postContainer = document.getElementById('post-container');
-    // console.log(postContainer);
     postContainer.innerHTML = "";
 
+    // main container e proti ta property store er jonno element make
+    posts.forEach(element => {
+        const postCard = document.createElement('div');
+        // postCard.innerHTML = element.title;
 
-    // forEach loop of array 
-    // container er proti ta object er jonno 
-    posts.forEach(post => {
-        //console.log(post); //pura object dibe
+        // JS e HTML likha
+        postCard.innerHTML = `<div class="post-card"> <!--ei ta te style dite hobe-->
+            <h1>${element.title}</h1>
+            <p> ${element.body}</p>
+        </div>`
 
-        // new element make, ul er moddhe thakbe
-        const li = document.createElement('li');
-        li.innerText = post.title; // post object er ekta property
-        // console.log(li);
-
-        // postContainer, jeta html a ul, shekhane 'li appendChild' kore dite hobe
-        postContainer.appendChild(li);
+        // append in main
+        postContainer.appendChild(postCard);
     });
-}
+};
 
-
-
-
+// button a click chara cards show korte hole call koro
+postData();
 
 
 
@@ -80,7 +77,7 @@ displayPost = (posts) =>{
 // // forEach() loop
 // const displayPost = (posts) =>{
 //     posts.forEach(post => {
-//        console.log(post); 
+//        console.log(post);
 //     });
 // };
 // // array of obj. jeta url a stored ase
